@@ -1,0 +1,4 @@
+/* web/style.css */
+body { font-family: Arial, sans-serif; }
+#images > div { border: 1px solid #ccc; margin: 10px; padding: 10px; }
+.preview { max-width: 200px; }

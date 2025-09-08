@@ -1,0 +1,6 @@
+server_addr: ":8080"
+database_url: "postgres://user:pass@postgres:5432/dbname?sslmode=disable"
+kafka_broker: "kafka:9092"
+kafka_topic: "image-processing"
+storage_path: "/app/files"
+watermark_text: "Watermark"

@@ -1,0 +1,54 @@
+
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./files:/app/files
+      - ./watermark.png:/app/watermark.png
+    depends_on:
+      - postgres
+      - kafka
+    environment:
+      - CONFIG_PATH=/app/config.yaml
+    networks:
+      - app-network
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: dbname
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+  kafka:
+    image: confluentinc/cp-kafka:7.0.1
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    networks:
+      - app-network
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.0.1
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
