@@ -1,18 +1,50 @@
-<!-- web/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Processor</title>
     <link rel="stylesheet" href="/web/style.css">
 </head>
 <body>
-<h1>Image Processor</h1>
-<form id="uploadForm">
-    <input type="file" name="image" accept="image/*">
-    <button type="submit">Upload</button>
-</form>
-<div id="images"></div>
-<script src="/web/script.js"></script>
+    <div class="container">
+        <header>
+            <h1>🖼️ Image Processor</h1>
+            <p>Upload images for automatic processing: resize, thumbnail generation, and watermarking</p>
+        </header>
+
+        <div class="upload-section">
+            <form id="uploadForm" class="upload-form">
+                <div class="file-input-wrapper">
+                    <input type="file" id="imageInput" name="image" accept="image/*" required>
+                    <label for="imageInput" class="file-input-label">
+                        <span class="upload-icon">📁</span>
+                        <span class="upload-text">Choose Image File</span>
+                    </label>
+                </div>
+                <button type="submit" class="upload-btn">
+                    <span class="btn-icon">⬆️</span>
+                    Upload & Process
+                </button>
+            </form>
+        </div>
+
+        <div class="images-section">
+            <h2>Your Images</h2>
+            <div id="images" class="images-grid"></div>
+            <div id="no-images" class="no-images">
+                <p>No images uploaded yet. Upload your first image above!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Full size image">
+        </div>
+    </div>
+
+    <script src="/web/script.js"></script>
 </body>
 </html>

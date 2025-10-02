@@ -10,4 +10,8 @@ type Image struct {
 	ProcessedPath   string    `db:"processed_path"`
 	ThumbnailPath   string    `db:"thumbnail_path"`
 	WatermarkedPath string    `db:"watermarked_path"`
+	// Individual processing status
+	ResizeStatus    string `db:"resize_status"`    // pending, processing, done, error
+	ThumbnailStatus string `db:"thumbnail_status"` // pending, processing, done, error
+	WatermarkStatus string `db:"watermark_status"` // pending, processing, done, error
 }

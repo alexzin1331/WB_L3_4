@@ -5,5 +5,8 @@ CREATE TABLE IF NOT EXISTS images (
     original_path TEXT NOT NULL,
     processed_path TEXT,
     thumbnail_path TEXT,
-    watermarked_path TEXT
+    watermarked_path TEXT,
+    resize_status TEXT DEFAULT 'pending',
+    thumbnail_status TEXT DEFAULT 'pending',
+    watermark_status TEXT DEFAULT 'pending'
 );
